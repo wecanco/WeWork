@@ -20,7 +20,7 @@ if requirements_file.exists():
 
 setup(
     name="wework-framework",
-    version="1.0.4",
+    version="1.0.5",
     description="A modular full-stack framework for building modern web applications",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -56,6 +56,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Framework :: FastAPI",
         "Topic :: Software Development :: Libraries :: Application Frameworks",
     ],
