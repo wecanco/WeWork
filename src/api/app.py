@@ -31,7 +31,7 @@ logging.getLogger("uvicorn.error").setLevel(logging.INFO)
 app = FastAPI(
     title='WeWork Framework API',
     description='A modular full-stack framework for building modern web applications',
-    version='1.0.0'
+    version='1.0.1'
 )
 
 # CORS middleware

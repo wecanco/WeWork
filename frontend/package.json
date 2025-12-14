@@ -1,6 +1,6 @@
 {
-  "name": "trading-bot-ui",
-  "version": "1.0.0",
+  "name": "wework-ui",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^5.90.12",
