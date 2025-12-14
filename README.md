@@ -23,8 +23,14 @@
 # نصب فریمورک
 pip install wework-framework
 
-# ایجاد پروژه جدید
+# ایجاد پروژه جدید (با انتخاب تمپلت از منوی تعاملی)
 wework create my-awesome-app
+
+# یا مستقیماً با مشخص کردن تمپلت
+wework create my-awesome-app --template corporate
+wework create my-awesome-app --template ecommerce
+wework create my-awesome-app --template admin
+wework create my-awesome-app --template messaging
 
 # رفتن به پوشه پروژه
 cd my-awesome-app
@@ -124,6 +130,27 @@ docker-compose exec api python -m src.db.create_tables
 - ✅ **Admin Panel**: پنل مدیریت کامل
 
 ## 🛠️ استفاده از CLI
+
+### تمپلت‌های آماده
+
+WeWork Framework شامل 5 تمپلت آماده است که می‌توانید از آن‌ها استفاده کنید:
+
+1. **Basic** - تمپلت پایه و ساده برای شروع
+2. **Corporate** - وب‌سایت شرکتی با صفحات خدمات، درباره ما و تماس
+3. **E-commerce** - فروشگاه آنلاین کامل با سبد خرید و پرداخت
+4. **Admin Panel** - پنل مدیریتی حرفه‌ای با داشبورد و جداول
+5. **Messaging** - سامانه ارسال پیام برای پیام‌رسان‌های ایرانی با مدیریت اکانت و ارسال توزیع شده
+
+```bash
+# ایجاد پروژه با انتخاب تمپلت از منوی تعاملی
+wework create my-project
+
+# یا مستقیماً با مشخص کردن تمپلت
+wework create my-corporate-site --template corporate
+wework create my-online-store --template ecommerce
+wework create my-admin-panel --template admin
+wework create my-messaging-app --template messaging
+```
 
 ### دستورات اصلی
 

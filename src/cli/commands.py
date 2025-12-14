@@ -480,7 +480,8 @@ def version_info():
 @click.command()
 @click.argument("project_name")
 @click.option("--path", default=".", help="Path to create project (default: current directory)")
-def create(project_name: str, path: str):
+@click.option("--template", default=None, help="Template to use (corporate, ecommerce, admin, basic). If not specified, will prompt for selection.")
+def create(project_name: str, path: str, template: Optional[str] = None):
     """Create a new WeWork project from template
     
     This command creates a new project with a complete structure including:
@@ -489,8 +490,15 @@ def create(project_name: str, path: str):
     - Docker configuration
     - Environment files
     
+    Available templates:
+    - basic: Basic starter template (default)
+    - corporate: Corporate/Company website template
+    - ecommerce: E-commerce/Store template
+    - admin: Admin panel template
+    
     Example:
         wework create my-awesome-app
+        wework create my-awesome-app --template corporate
         wework create my-awesome-app --path /path/to/projects
     """
     import re
@@ -501,12 +509,58 @@ def create(project_name: str, path: str):
         click.echo("✗ Invalid project name! Use only letters, numbers, hyphens, and underscores. Must start with a letter.")
         return
     
+    # Available templates with descriptions
+    templates = {
+        'basic': {
+            'name': 'Basic Starter',
+            'description': 'Basic starter template with minimal setup',
+            'dir': 'project_template'
+        },
+        'corporate': {
+            'name': 'Corporate/Company',
+            'description': 'Modern corporate website template with services, about, contact pages',
+            'dir': 'corporate_template'
+        },
+        'ecommerce': {
+            'name': 'E-commerce/Store',
+            'description': 'Complete e-commerce template with products, cart, checkout',
+            'dir': 'ecommerce_template'
+        },
+        'admin': {
+            'name': 'Admin Panel',
+            'description': 'Professional admin dashboard with tables, charts, and analytics',
+            'dir': 'admin_template'
+        },
+        'messaging': {
+            'name': 'Messaging System',
+            'description': 'Complete messaging system for Iranian messengers with subscription, account management, and distributed messaging',
+            'dir': 'messaging_template'
+        }
+    }
+    
+    # If template not specified, show interactive menu
+    if template is None:
+        safe_echo("📋 Available templates:")
+        click.echo("")
+        for key, info in templates.items():
+            click.echo(f"  {key:12} - {info['name']:20} - {info['description']}")
+        click.echo("")
+        template = click.prompt("Select template", type=click.Choice(list(templates.keys())), default='basic')
+    
+    # Validate template
+    if template not in templates:
+        click.echo(f"✗ Invalid template '{template}'! Available: {', '.join(templates.keys())}")
+        return
+    
+    template_info = templates[template]
+    template_dir = template_info['dir']
+    
     # Get template path
     # Try to find template in installed package first
     template_path = None
     try:
         import pkg_resources
-        template_path = Path(pkg_resources.resource_filename('src.cli.templates', 'project_template'))
+        template_path = Path(pkg_resources.resource_filename('src.cli.templates', template_dir))
         if not template_path.exists():
             template_path = None
     except:
@@ -514,10 +568,10 @@ def create(project_name: str, path: str):
     
     # Fallback: use relative path from this file (for development)
     if template_path is None or not template_path.exists():
-        template_path = Path(__file__).parent / 'templates' / 'project_template'
+        template_path = Path(__file__).parent / 'templates' / template_dir
     
     if not template_path.exists():
-        click.echo(f"✗ Template not found at {template_path}")
+        click.echo(f"✗ Template '{template}' not found at {template_path}")
         click.echo("  Please ensure wework-framework is properly installed.")
         return
     
@@ -543,6 +597,7 @@ def create(project_name: str, path: str):
     }
     
     safe_echo(f"🚀 Creating new WeWork project '{project_name}'...")
+    click.echo(f"   Template: {template_info['name']}")
     click.echo(f"   Location: {project_path}")
     
     # Copy template files

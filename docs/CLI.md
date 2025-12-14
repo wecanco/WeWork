@@ -20,12 +20,54 @@ pip install git+https://github.com/wecanco/WeWork.git
 
 ### `wework create <project-name>`
 
-ایجاد پروژه جدید با ساختار کامل:
+ایجاد پروژه جدید با ساختار کامل از تمپلت‌های آماده:
 
 ```bash
+# ایجاد پروژه با انتخاب تمپلت از منوی تعاملی
 wework create my-awesome-app
+
+# یا مستقیماً با مشخص کردن تمپلت
+wework create my-awesome-app --template corporate
+wework create my-awesome-app --template ecommerce
+wework create my-awesome-app --template admin
+wework create my-awesome-app --template messaging
+wework create my-awesome-app --template basic
+
+# مشخص کردن مسیر ایجاد پروژه
 wework create my-awesome-app --path /path/to/projects
 ```
+
+#### تمپلت‌های موجود:
+
+1. **basic** (پیش‌فرض) - تمپلت پایه و ساده
+   - ساختار کامل Backend و Frontend
+   - مناسب برای شروع از صفر
+
+2. **corporate** - وب‌سایت شرکتی
+   - لندینگ مدرن با Hero Section
+   - صفحات خدمات، درباره ما، تماس با ما
+   - Navigation Bar حرفه‌ای
+   - طراحی Mobile-First
+
+3. **ecommerce** - فروشگاه آنلاین
+   - صفحه محصولات با جستجو
+   - صفحه جزئیات محصول
+   - سبد خرید (Shopping Cart)
+   - صفحه پرداخت (Checkout)
+   - Navigation با آیکون سبد خرید
+
+4. **admin** - پنل مدیریتی
+   - Dashboard با آمار و نمودارها
+   - جداول داده با جستجو و فیلتر
+   - Sidebar Navigation
+   - طراحی Responsive
+
+5. **messaging** - سامانه ارسال پیام
+   - لندینگ با پلن‌های اشتراک
+   - امکان خرید اشتراک
+   - مدیریت اکانت‌های پیام‌رسان (بله، ایتا، روبیکا، سروش، گپ)
+   - ارسال پیام به صورت توزیع شده
+   - پنل مدیریت کامل
 
 این دستور یک پروژه کامل با ساختار زیر ایجاد می‌کند:
 - ✅ Backend (FastAPI) با تنظیمات کامل
@@ -33,10 +75,23 @@ wework create my-awesome-app --path /path/to/projects
 - ✅ Docker Compose برای PostgreSQL و Redis
 - ✅ فایل‌های تنظیمات (.env.example)
 - ✅ ساختار کامل پوشه‌ها
+- ✅ کامپوننت‌ها و صفحات آماده (بسته به تمپلت)
 
 **مثال:**
 ```bash
-# ایجاد پروژه جدید
+# ایجاد پروژه شرکتی
+wework create my-corporate-site --template corporate
+
+# ایجاد پروژه فروشگاهی
+wework create my-online-store --template ecommerce
+
+# ایجاد پروژه پنل مدیریتی
+wework create my-admin-panel --template admin
+
+# ایجاد پروژه سامانه پیام
+wework create my-messaging-app --template messaging
+
+# یا با انتخاب از منوی تعاملی
 wework create my-project
 
 # رفتن به پوشه پروژه
