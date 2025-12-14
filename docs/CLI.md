@@ -13,7 +13,7 @@ pip install wework-framework
 یا از GitHub:
 
 ```bash
-pip install git+https://github.com/yourusername/wework-framework.git
+pip install git+https://github.com/wecanco/wework-framework.git
 ```
 
 ## 🚀 دستورات اصلی

@@ -11,7 +11,7 @@ pip install wework-framework
 ## نصب از GitHub
 
 ```bash
-pip install git+https://github.com/yourusername/wework-framework.git
+pip install git+https://github.com/wecanco/wework-framework.git
 ```
 
 ## ایجاد پروژه جدید
@@ -168,6 +168,6 @@ pip install --upgrade --force-reinstall wework-framework
 
 ## پشتیبانی
 
-- Issues: https://github.com/yourusername/wework-framework/issues
-- Documentation: https://github.com/yourusername/wework-framework/docs
+- Issues: https://github.com/wecanco/wework-framework/issues
+- Documentation: https://github.com/wecanco/wework-framework/docs
 

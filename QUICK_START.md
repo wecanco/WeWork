@@ -6,7 +6,7 @@
 
 ```bash
 # 1. کلون کردن پروژه
-git clone https://github.com/yourusername/wework-framework.git
+git clone https://github.com/wecanco/wework-framework.git
 cd wework-framework
 
 # 2. ایجاد فایل .env

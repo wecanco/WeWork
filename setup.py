@@ -26,7 +26,7 @@ setup(
     long_description_content_type="text/markdown",
     author="WeWork Team",
     author_email="info@wework.dev",
-    url="https://github.com/yourusername/wework-framework",
+    url="https://github.com/wecanco/wework-framework",
     packages=find_packages(exclude=["tests", "tests.*", "examples", "examples.*"]),
     include_package_data=True,
     install_requires=requirements,
@@ -49,9 +49,9 @@ setup(
     ],
     keywords="framework fastapi react fullstack web development",
     project_urls={
-        "Documentation": "https://github.com/yourusername/wework-framework/docs",
-        "Source": "https://github.com/yourusername/wework-framework",
-        "Tracker": "https://github.com/yourusername/wework-framework/issues",
+        "Documentation": "https://github.com/wecanco/wework-framework/docs",
+        "Source": "https://github.com/wecanco/wework-framework",
+        "Tracker": "https://github.com/wecanco/wework-framework/issues",
     },
 )
 
