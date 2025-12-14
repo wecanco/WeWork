@@ -12,6 +12,7 @@ from src.cli.commands import (
     update_framework,
     version_info,
     set_version,
+    create,
 )
 
 
@@ -28,6 +29,7 @@ def cli():
 
 
 # Add commands
+cli.add_command(create)
 cli.add_command(init_project)
 cli.add_command(make_api)
 cli.add_command(make_model)

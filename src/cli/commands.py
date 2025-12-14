@@ -464,3 +464,134 @@ def version_info():
         if config.get('framework_version') != version:
             click.echo("  ⚠ Framework version mismatch! Run 'wework update' to update.")
 
+
+@click.command()
+@click.argument("project_name")
+@click.option("--path", default=".", help="Path to create project (default: current directory)")
+def create(project_name: str, path: str):
+    """Create a new WeWork project from template
+    
+    This command creates a new project with a complete structure including:
+    - Backend (FastAPI) with database setup
+    - Frontend (React) with Vite
+    - Docker configuration
+    - Environment files
+    
+    Example:
+        wework create my-awesome-app
+        wework create my-awesome-app --path /path/to/projects
+    """
+    import re
+    from pathlib import Path
+    
+    # Validate project name
+    if not re.match(r'^[a-zA-Z][a-zA-Z0-9_-]*$', project_name):
+        click.echo("✗ Invalid project name! Use only letters, numbers, hyphens, and underscores. Must start with a letter.")
+        return
+    
+    # Get template path
+    # Try to find template in installed package first
+    template_path = None
+    try:
+        import pkg_resources
+        template_path = Path(pkg_resources.resource_filename('src.cli.templates', 'project_template'))
+        if not template_path.exists():
+            template_path = None
+    except:
+        pass
+    
+    # Fallback: use relative path from this file (for development)
+    if template_path is None or not template_path.exists():
+        template_path = Path(__file__).parent / 'templates' / 'project_template'
+    
+    if not template_path.exists():
+        click.echo(f"✗ Template not found at {template_path}")
+        click.echo("  Please ensure wework-framework is properly installed.")
+        return
+    
+    # Create project directory
+    project_path = Path(path).resolve() / project_name
+    
+    if project_path.exists():
+        if not click.confirm(f"Directory {project_path} already exists. Overwrite?"):
+            click.echo("✗ Cancelled.")
+            return
+        shutil.rmtree(project_path)
+    
+    project_path.mkdir(parents=True, exist_ok=True)
+    
+    # Prepare template variables
+    project_name_snake = re.sub(r'[^a-zA-Z0-9]', '_', project_name).lower()
+    framework_version = get_framework_version()
+    
+    replacements = {
+        '{{PROJECT_NAME}}': project_name,
+        '{{PROJECT_NAME_SNAKE}}': project_name_snake,
+        '{{FRAMEWORK_VERSION}}': framework_version,
+    }
+    
+    click.echo(f"🚀 Creating new WeWork project '{project_name}'...")
+    click.echo(f"   Location: {project_path}")
+    
+    # Copy template files
+    def process_file(src_file: Path, dst_file: Path):
+        """Copy and process template file"""
+        # Create parent directories
+        dst_file.parent.mkdir(parents=True, exist_ok=True)
+        
+        # Read source file
+        content = src_file.read_text(encoding='utf-8')
+        
+        # Replace template variables
+        for old, new in replacements.items():
+            content = content.replace(old, new)
+        
+        # Write to destination
+        dst_file.write_text(content, encoding='utf-8')
+    
+    # Copy all files from template
+    for src_file in template_path.rglob('*'):
+        if src_file.is_file():
+            # Get relative path
+            rel_path = src_file.relative_to(template_path)
+            dst_file = project_path / rel_path
+            
+            # Skip .env.example if .env exists (we'll create it separately)
+            if rel_path.name == '.env.example':
+                continue
+            
+            process_file(src_file, dst_file)
+    
+    # Create .env from .env.example
+    env_example = template_path / '.env.example'
+    if env_example.exists():
+        env_content = env_example.read_text(encoding='utf-8')
+        for old, new in replacements.items():
+            env_content = env_content.replace(old, new)
+        (project_path / '.env.example').write_text(env_content, encoding='utf-8')
+    
+    # Make docker-entrypoint.sh executable
+    entrypoint = project_path / 'docker-entrypoint.sh'
+    if entrypoint.exists():
+        try:
+            import stat
+            entrypoint.chmod(entrypoint.stat().st_mode | stat.S_IEXEC)
+        except:
+            pass  # Windows doesn't support chmod
+    
+    click.echo("✅ Project created successfully!")
+    click.echo("")
+    click.echo("📝 Next steps:")
+    click.echo(f"  1. cd {project_name}")
+    click.echo("  2. cp .env.example .env")
+    click.echo("  3. Edit .env with your configuration")
+    click.echo("  4. python -m venv venv")
+    click.echo("  5. source venv/bin/activate  # Windows: venv\\Scripts\\activate")
+    click.echo("  6. pip install -r requirements.txt")
+    click.echo("  7. cd frontend && npm install")
+    click.echo("  8. cd .. && docker-compose up -d postgres redis")
+    click.echo("  9. python -m src.db.create_tables")
+    click.echo("  10. uvicorn src.api.app:app --reload")
+    click.echo("  11. In another terminal: cd frontend && npm run dev")
+    click.echo("")
+    click.echo("📚 Documentation: https://github.com/wecanco/WeWork")

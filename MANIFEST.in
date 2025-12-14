@@ -5,6 +5,7 @@ include CHANGELOG.md
 recursive-include docs *
 recursive-include examples *
 recursive-include frontend/src/ui *
+recursive-include src/cli/templates *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-exclude * .git*

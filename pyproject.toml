@@ -38,4 +38,5 @@ packages = ["src"]
 
 [tool.setuptools.package-data]
 "*" = ["*.md", "*.txt", "*.json", "*.yaml", "*.yml"]
+"src.cli.templates" = ["**/*"]
 

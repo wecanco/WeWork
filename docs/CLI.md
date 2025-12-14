@@ -18,6 +18,54 @@ pip install git+https://github.com/wecanco/WeWork.git
 
 ## 🚀 دستورات اصلی
 
+### `wework create <project-name>`
+
+ایجاد پروژه جدید با ساختار کامل:
+
+```bash
+wework create my-awesome-app
+wework create my-awesome-app --path /path/to/projects
+```
+
+این دستور یک پروژه کامل با ساختار زیر ایجاد می‌کند:
+- ✅ Backend (FastAPI) با تنظیمات کامل
+- ✅ Frontend (React) با Vite
+- ✅ Docker Compose برای PostgreSQL و Redis
+- ✅ فایل‌های تنظیمات (.env.example)
+- ✅ ساختار کامل پوشه‌ها
+
+**مثال:**
+```bash
+# ایجاد پروژه جدید
+wework create my-project
+
+# رفتن به پوشه پروژه
+cd my-project
+
+# تنظیم محیط
+cp .env.example .env
+# ویرایش .env
+
+# نصب وابستگی‌ها
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+# راه‌اندازی دیتابیس
+docker-compose up -d postgres redis
+
+# ایجاد جداول
+python -m src.db.create_tables
+
+# راه‌اندازی بک‌اند
+uvicorn src.api.app:app --reload
+
+# در ترمینال جدید - راه‌اندازی فرانت‌اند
+cd frontend
+npm install
+npm run dev
+```
+
 ### `wework make:api <name>`
 
 ساخت API Router جدید با CRUD کامل:

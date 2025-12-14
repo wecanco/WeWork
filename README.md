@@ -17,7 +17,43 @@
 - Redis 6+
 - Docker (اختیاری)
 
-### نصب و راه‌اندازی
+### ایجاد پروژه جدید
+
+```bash
+# نصب فریمورک
+pip install wework-framework
+
+# ایجاد پروژه جدید
+wework create my-awesome-app
+
+# رفتن به پوشه پروژه
+cd my-awesome-app
+
+# تنظیم محیط
+cp .env.example .env
+# فایل .env را ویرایش کنید
+
+# نصب وابستگی‌های بک‌اند
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+# راه‌اندازی دیتابیس و Redis
+docker-compose up -d postgres redis
+
+# ایجاد جداول دیتابیس
+python -m src.db.create_tables
+
+# راه‌اندازی بک‌اند
+uvicorn src.api.app:app --reload --port 8000
+
+# در ترمینال جدید - راه‌اندازی فرانت‌اند
+cd frontend
+npm install
+npm run dev
+```
+
+### نصب و راه‌اندازی (روش قدیمی - کلون از GitHub)
 
 ```bash
 # 1. کلون کردن پروژه
@@ -92,6 +128,9 @@ docker-compose exec api python -m src.db.create_tables
 ### دستورات اصلی
 
 ```bash
+# ایجاد پروژه جدید
+wework create my-project
+
 # ساخت API Router جدید
 wework make:api products
 
