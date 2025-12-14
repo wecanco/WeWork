@@ -11,6 +11,18 @@ import click
 import json
 
 
+def safe_echo(message: str):
+    """Safely echo message, handling Unicode encoding errors on Windows"""
+    try:
+        click.echo(message)
+    except UnicodeEncodeError:
+        # Fallback: remove emojis and special characters for Windows console
+        import re
+        # Remove emojis and other problematic Unicode characters
+        safe_message = re.sub(r'[^\x00-\x7F]+', '', message)
+        click.echo(safe_message if safe_message.strip() else message.encode('ascii', 'ignore').decode('ascii'))
+
+
 def get_project_root():
     """Find project root by looking for .wework or pyproject.toml"""
     current = Path.cwd()
@@ -42,7 +54,7 @@ def init_project(name: str, path: str):
     # Create .wework config file
     config = {
         "name": name,
-        "version": "1.0.6",
+        "version": "1.0.7",
         "framework_version": get_framework_version(),
     }
     (project_path / ".wework").write_text(json.dumps(config, indent=2))
@@ -217,7 +229,7 @@ export default function {component_name}() {{
   return (
     <div className="{name.lower().replace('_', '-')}">
       <h2>{component_name}</h2>
-      {/* Your component content */}
+      {{/* Your component content */}}
     </div>
   )
 }}
@@ -530,7 +542,7 @@ def create(project_name: str, path: str):
         '{{FRAMEWORK_VERSION}}': framework_version,
     }
     
-    click.echo(f"🚀 Creating new WeWork project '{project_name}'...")
+    safe_echo(f"🚀 Creating new WeWork project '{project_name}'...")
     click.echo(f"   Location: {project_path}")
     
     # Copy template files
@@ -539,8 +551,22 @@ def create(project_name: str, path: str):
         # Create parent directories
         dst_file.parent.mkdir(parents=True, exist_ok=True)
         
-        # Read source file
-        content = src_file.read_text(encoding='utf-8')
+        # Try to read as text file with different encodings
+        content = None
+        encodings = ['utf-8', 'utf-8-sig', 'latin-1', 'cp1252']
+        
+        for encoding in encodings:
+            try:
+                content = src_file.read_text(encoding=encoding)
+                break
+            except (UnicodeDecodeError, UnicodeError):
+                continue
+        
+        # If all text encodings failed, treat as binary file
+        if content is None:
+            # Copy binary file as-is
+            shutil.copy2(src_file, dst_file)
+            return
         
         # Replace template variables
         for old, new in replacements.items():
@@ -560,15 +586,29 @@ def create(project_name: str, path: str):
             if rel_path.name == '.env.example':
                 continue
             
+            # Skip __pycache__ and .pyc files
+            if '__pycache__' in rel_path.parts or rel_path.suffix == '.pyc':
+                continue
+            
             process_file(src_file, dst_file)
     
     # Create .env from .env.example
     env_example = template_path / '.env.example'
     if env_example.exists():
-        env_content = env_example.read_text(encoding='utf-8')
-        for old, new in replacements.items():
-            env_content = env_content.replace(old, new)
-        (project_path / '.env.example').write_text(env_content, encoding='utf-8')
+        # Try different encodings
+        env_content = None
+        encodings = ['utf-8', 'utf-8-sig', 'latin-1', 'cp1252']
+        for encoding in encodings:
+            try:
+                env_content = env_example.read_text(encoding=encoding)
+                break
+            except (UnicodeDecodeError, UnicodeError):
+                continue
+        
+        if env_content is not None:
+            for old, new in replacements.items():
+                env_content = env_content.replace(old, new)
+            (project_path / '.env.example').write_text(env_content, encoding='utf-8')
     
     # Make docker-entrypoint.sh executable
     entrypoint = project_path / 'docker-entrypoint.sh'
@@ -579,9 +619,9 @@ def create(project_name: str, path: str):
         except:
             pass  # Windows doesn't support chmod
     
-    click.echo("✅ Project created successfully!")
+    safe_echo("✅ Project created successfully!")
     click.echo("")
-    click.echo("📝 Next steps:")
+    safe_echo("📝 Next steps:")
     click.echo(f"  1. cd {project_name}")
     click.echo("  2. cp .env.example .env")
     click.echo("  3. Edit .env with your configuration")
@@ -594,4 +634,4 @@ def create(project_name: str, path: str):
     click.echo("  10. uvicorn src.api.app:app --reload")
     click.echo("  11. In another terminal: cd frontend && npm run dev")
     click.echo("")
-    click.echo("📚 Documentation: https://github.com/wecanco/WeWork")
+    safe_echo("📚 Documentation: https://github.com/wecanco/WeWork")

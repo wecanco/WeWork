@@ -31,7 +31,7 @@ logging.getLogger("uvicorn.error").setLevel(logging.INFO)
 app = FastAPI(
     title='WeWork Framework API',
     description='A modular full-stack framework for building modern web applications',
-    version='1.0.6'
+    version='1.0.7'
 )
 
 # CORS middleware
@@ -77,7 +77,7 @@ async def root():
     """Root endpoint"""
     return {
         "message": "Welcome to WeWork Framework",
-        "version": "1.0.6",
+        "version": "1.0.7",
         "docs": "/docs",
         "cli_help": "Run 'wework --help' to see available commands"
     }
