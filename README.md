@@ -22,7 +22,7 @@
 ```bash
 # 1. کلون کردن پروژه
 git clone https://github.com/wecanco/WeWork.git
-cd wework-framework
+cd wework
 
 # 2. نصب وابستگی‌های بک‌اند
 python -m venv venv
