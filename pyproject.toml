@@ -29,9 +29,9 @@ classifiers = [
 wework = "src.cli.main:cli"
 
 [project.urls]
-Documentation = "https://github.com/wecanco/wework-framework/docs"
-Source = "https://github.com/wecanco/wework-framework"
-Tracker = "https://github.com/wecanco/wework-framework/issues"
+Documentation = "https://github.com/wecanco/WeWork/docs"
+Source = "https://github.com/wecanco/WeWork"
+Tracker = "https://github.com/wecanco/WeWork/issues"
 
 [tool.setuptools]
 packages = ["src"]

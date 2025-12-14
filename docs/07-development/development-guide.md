@@ -6,7 +6,7 @@
 
 ```bash
 # کلون کردن
-git clone https://github.com/wecanco/wework-framework.git
+git clone https://github.com/wecanco/WeWork.git
 cd wework-framework
 
 # نصب در حالت development
