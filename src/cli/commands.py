@@ -42,7 +42,7 @@ def init_project(name: str, path: str):
     # Create .wework config file
     config = {
         "name": name,
-        "version": "1.0.5",
+        "version": "1.0.6",
         "framework_version": get_framework_version(),
     }
     (project_path / ".wework").write_text(json.dumps(config, indent=2))
