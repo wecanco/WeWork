@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wework-framework"
-version = "1.0.2"
+version = "1.0.3"
 description = "A modular full-stack framework for building modern web applications"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -34,7 +34,20 @@ Source = "https://github.com/wecanco/WeWork"
 Tracker = "https://github.com/wecanco/WeWork/issues"
 
 [tool.setuptools]
-packages = ["src"]
+# Use find_packages to automatically discover all packages
+packages = { find = { exclude = [
+    "tests*",
+    "examples*",
+    "frontend*",
+    "venv*",
+    "env*",
+    "ENV*",
+    ".venv*",
+    "node_modules*",
+    "dist*",
+    "build*",
+    "*.egg-info*",
+] } }
 
 [tool.setuptools.package-data]
 "*" = ["*.md", "*.txt", "*.json", "*.yaml", "*.yml"]
