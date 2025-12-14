@@ -77,7 +77,7 @@ async def root():
     """Root endpoint"""
     return {
         "message": "Welcome to WeWork Framework",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "docs": "/docs",
         "cli_help": "Run 'wework --help' to see available commands"
     }

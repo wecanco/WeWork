@@ -11,6 +11,7 @@ from src.cli.commands import (
     init_project,
     update_framework,
     version_info,
+    set_version,
 )
 
 
@@ -34,6 +35,7 @@ cli.add_command(make_component)
 cli.add_command(make_hook)
 cli.add_command(make_migration)
 cli.add_command(update_framework)
+cli.add_command(set_version, name="set:version")
 cli.add_command(version_info)
 
 

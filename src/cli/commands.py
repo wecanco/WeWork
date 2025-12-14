@@ -382,6 +382,59 @@ def update_framework():
 
 
 @click.command()
+@click.argument("new_version", required=False)
+def set_version(new_version: Optional[str]):
+    """Set project version centrally and update all files
+    
+    Usage:
+        wework set:version 1.0.2    - Set version to 1.0.2
+        wework set:version          - Sync all files with current version from version.json
+    """
+    project_root = get_project_root()
+    version_file = project_root / "version.json"
+    update_script = project_root / "scripts" / "update_version.py"
+    
+    if not update_script.exists():
+        click.echo("✗ اسکریپت update_version.py پیدا نشد!")
+        return
+    
+    try:
+        if new_version:
+            # Set new version
+            import subprocess
+            result = subprocess.run(
+                [sys.executable, str(update_script), new_version],
+                cwd=project_root,
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                click.echo(result.stdout)
+                click.echo(f"✓ نسخه به {new_version} تغییر کرد و همه فایل‌ها به‌روزرسانی شدند")
+            else:
+                click.echo(f"✗ خطا: {result.stderr}")
+        else:
+            # Sync with current version
+            if not version_file.exists():
+                click.echo("✗ فایل version.json پیدا نشد!")
+                return
+            
+            import subprocess
+            result = subprocess.run(
+                [sys.executable, str(update_script)],
+                cwd=project_root,
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                click.echo(result.stdout)
+            else:
+                click.echo(f"✗ خطا: {result.stderr}")
+    except Exception as e:
+        click.echo(f"✗ خطا: {e}")
+
+
+@click.command()
 def version_info():
     """Show WeWork framework version information"""
     version = get_framework_version()
@@ -390,12 +443,22 @@ def version_info():
     click.echo("WeWork Framework")
     click.echo(f"  Framework version: {version}")
     
-    # Check project version
+    # Check project version from version.json
+    version_file = project_root / "version.json"
+    if version_file.exists():
+        try:
+            version_data = json.loads(version_file.read_text())
+            project_version = version_data.get("version", "unknown")
+            click.echo(f"  Project version: {project_version}")
+        except:
+            pass
+    
+    # Check project version from .wework
     wework_config = project_root / ".wework"
     if wework_config.exists():
         config = json.loads(wework_config.read_text())
         click.echo(f"  Project: {config.get('name', 'unknown')}")
-        click.echo(f"  Project version: {config.get('version', 'unknown')}")
+        click.echo(f"  Project version (legacy): {config.get('version', 'unknown')}")
         click.echo(f"  Framework version (project): {config.get('framework_version', 'unknown')}")
         
         if config.get('framework_version') != version:
