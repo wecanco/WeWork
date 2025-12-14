@@ -20,7 +20,7 @@ if requirements_file.exists():
 
 setup(
     name="wework-framework",
-    version="1.0.1",
+    version="1.0.2",
     description="A modular full-stack framework for building modern web applications",
     long_description=long_description,
     long_description_content_type="text/markdown",

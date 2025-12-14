@@ -17,7 +17,7 @@ from src.cli.commands import (
 
 
 @click.group()
-@click.version_option(version="1.0.1", prog_name="wework")
+@click.version_option(version="1.0.2", prog_name="wework")
 def cli():
     """
     WeWork Framework CLI
