@@ -1,0 +1,155 @@
+.bot-management {
+  padding: 20px;
+  color: #e2e8f0;
+  min-height: 100%;
+}
+
+.bot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.bot-header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bot-header h2 {
+  margin: 0;
+  color: #f1f5f9;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.bot-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.bot-loading-more {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.bot-end-of-list {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.bot-card {
+  /* Card styles are handled by UI Kit */
+}
+
+.bot-card h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.bot-info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.bot-info-row strong {
+  color: #e2e8f0;
+}
+
+.bot-stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #334155;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: #e2e8f0;
+}
+
+.stat-value.positive {
+  color: #4caf50;
+}
+
+.stat-value.negative {
+  color: #f44336;
+}
+
+.bot-error {
+  margin-top: 12px;
+  padding: 8px;
+  background: rgba(239, 68, 68, 0.15);
+  border-radius: 4px;
+  color: #fca5a5;
+  font-size: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.bot-error strong {
+  color: #fca5a5;
+}
+
+/* Button styles are handled by UI Kit */
+
+/* Modal and Form styles are handled by UI Kit */
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .bot-management {
+    padding: 12px;
+  }
+  
+  .bot-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .bot-header h2 {
+    font-size: 20px;
+  }
+  
+  .bot-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .bot-info-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .bot-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+

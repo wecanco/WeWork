@@ -1,0 +1,228 @@
+.live-trades-history {
+  padding: 20px;
+}
+
+.live-trades-history h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+/* Custom Table Styling for Dark Theme */
+.trades-table .ui-table-wrapper {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.trades-table .ui-table {
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.trades-table .ui-table thead {
+  background: rgba(30, 41, 59, 0.8);
+}
+
+.trades-table .ui-table th {
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.trades-table .ui-table td {
+  color: #e2e8f0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.trades-table .ui-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Trade Status Row Styling */
+.trades-table .ui-table tbody tr.win {
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.trades-table .ui-table tbody tr.loss {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.trades-table .ui-table tbody tr.open {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* Badge Styling for Dark Theme */
+.side-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.side-badge.buy {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.side-badge.sell {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.status-badge.open {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.status-badge.closed {
+  background: rgba(148, 163, 184, 0.2);
+  color: #cbd5f5;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+/* Positive/Negative Colors */
+.positive {
+  color: #4ade80;
+  font-weight: bold;
+}
+
+.negative {
+  color: #f87171;
+  font-weight: bold;
+}
+
+/* Loading and Error States */
+.loading-state {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+}
+
+.error-state {
+  padding: 20px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+}
+
+.error-message {
+  color: #fca5a5;
+  text-align: center;
+}
+
+/* Mobile Card Styling */
+.trade-card {
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.trade-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.trade-card.win {
+  border-left: 4px solid #4ade80;
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.trade-card.loss {
+  border-left: 4px solid #f87171;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.trade-card.open {
+  border-left: 4px solid #60a5fa;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.trade-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.trade-symbol {
+  font-weight: bold;
+  color: #f1f5f9;
+  font-size: 16px;
+}
+
+.trade-time {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.trade-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trade-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.trade-label {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.trade-card-body .side-badge,
+.trade-card-body .status-badge {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .live-trades-history {
+    padding: 16px;
+  }
+  
+  .live-trades-history h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .trade-card {
+    padding: 12px;
+  }
+  
+  .trade-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .trade-symbol {
+    font-size: 14px;
+  }
+}
+

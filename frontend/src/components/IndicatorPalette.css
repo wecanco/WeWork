@@ -1,0 +1,100 @@
+.indicator-palette {
+  padding: 1rem;
+  border-bottom: 1px solid #334155;
+}
+
+.palette-header {
+  margin-bottom: 1rem;
+}
+
+.palette-header h3 {
+  font-size: 1.1rem;
+  color: #f1f5f9;
+  margin-bottom: 0.5rem;
+}
+
+.palette-search {
+  width: 100%;
+  padding: 0.5rem;
+  background: #334155;
+  border: 1px solid #475569;
+  color: #e2e8f0;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.category-filter {
+  padding: 0.3rem 0.6rem;
+  background: #334155;
+  border: 1px solid #475569;
+  color: #94a3b8;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.category-filter:hover {
+  background: #475569;
+}
+
+.category-filter.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.indicators-list {
+}
+
+.indicator-group {
+  margin-bottom: 1.5rem;
+}
+
+.group-header {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.indicator-item {
+  padding: 0.75rem;
+  background: #334155;
+  border: 1px solid #475569;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: grab;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.indicator-item:active {
+  cursor: grabbing;
+}
+
+.indicator-item:hover {
+  background: #475569;
+  border-color: #64748b;
+  transform: translateX(-2px);
+}
+
+.indicator-name {
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.indicator-desc {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+

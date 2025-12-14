@@ -1,0 +1,22 @@
+{
+  "name": "WeTrade Bot",
+  "short_name": "WeTrade",
+  "description": "داشبورد استراتژی و ربات معاملاتی",
+  "start_url": "/app/strategies",
+  "scope": "/",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "fa",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "/pwa-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
+

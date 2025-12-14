@@ -1,0 +1,161 @@
+.user-profile {
+  min-height: 100vh;
+  background: #0f172a;
+  padding: 2rem;
+}
+
+.user-profile-loading,
+.user-profile-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: #94a3b8;
+  gap: 1rem;
+}
+
+.user-profile-error {
+  color: #ef4444;
+}
+
+.btn-back {
+  padding: 0.5rem 1rem;
+  background: #1e293b;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.btn-back:hover {
+  background: #273449;
+  border-color: #475569;
+}
+
+.user-profile-header {
+  margin-bottom: 2rem;
+}
+
+.user-profile-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.user-profile-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.user-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #334155;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
+.user-name {
+  font-size: 2rem;
+  color: #f1f5f9;
+  margin: 0 0 0.5rem;
+}
+
+.user-username {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  margin: 0 0 1rem;
+}
+
+.user-bio {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-meta {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.user-strategies-section {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.user-strategies-section h2 {
+  font-size: 1.5rem;
+  color: #f1f5f9;
+  margin: 0 0 1.5rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #94a3b8;
+}
+
+.strategies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .user-profile {
+    padding: 1rem;
+  }
+  
+  .user-profile-card {
+    padding: 1.5rem;
+  }
+  
+  .user-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .avatar-placeholder {
+    font-size: 2rem;
+  }
+  
+  .user-name {
+    font-size: 1.5rem;
+  }
+  
+  .strategies-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

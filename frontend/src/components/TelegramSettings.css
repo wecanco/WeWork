@@ -1,0 +1,104 @@
+.telegram-settings {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.telegram-settings-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.telegram-settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.telegram-info {
+  background: var(--color-surface-secondary, #f5f5f5);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.telegram-info p {
+  margin: 0 0 16px 0;
+  color: var(--color-text-secondary, #666);
+  line-height: 1.6;
+}
+
+.telegram-info ol {
+  margin: 0;
+  padding-right: 20px;
+  color: var(--color-text-secondary, #666);
+}
+
+.telegram-info li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.telegram-info code {
+  background: var(--color-surface, #fff);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  color: var(--color-primary, #007bff);
+}
+
+.telegram-info strong {
+  color: var(--color-text, #333);
+  font-weight: 600;
+}
+
+.telegram-settings FormGroup {
+  margin-bottom: 20px;
+}
+
+.telegram-settings label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+  color: var(--color-text, #e2e8f0);
+}
+
+.telegram-settings label input[type="checkbox"] {
+  width: auto;
+  margin-left: 8px;
+}
+
+.telegram-settings label span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text, #e2e8f0);
+}
+
+.telegram-settings small {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 0.875em;
+}
+
+.telegram-settings FormActions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .telegram-settings {
+    padding: 16px;
+  }
+
+  .telegram-info {
+    padding: 16px;
+  }
+}
+

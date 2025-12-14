@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wework-framework"
+version = "1.0.0"
+description = "A modular full-stack framework for building modern web applications"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "WeWork Team", email = "info@wework.dev"}
+]
+keywords = ["framework", "fastapi", "react", "fullstack", "web", "development"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Framework :: FastAPI",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+
+[project.scripts]
+wework = "src.cli.main:cli"
+
+[project.urls]
+Documentation = "https://github.com/yourusername/wework-framework/docs"
+Source = "https://github.com/yourusername/wework-framework"
+Tracker = "https://github.com/yourusername/wework-framework/issues"
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.txt", "*.json", "*.yaml", "*.yml"]
+

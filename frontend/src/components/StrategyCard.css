@@ -1,0 +1,142 @@
+.strategy-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.2s;
+}
+
+.strategy-card:hover {
+  border-color: #475569;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.strategy-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.strategy-card-header h3 {
+  font-size: 1.25rem;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.strategy-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.strategy-actions button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-edit {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #2563eb;
+}
+
+.btn-view {
+  background: #6b7280;
+  color: white;
+}
+
+.btn-view:hover {
+  background: #4b5563;
+}
+
+.btn-backtest {
+  background: #10b981;
+  color: white;
+}
+
+.btn-backtest:hover {
+  background: #059669;
+}
+
+.btn-history {
+  background: #8b5cf6;
+  color: white;
+}
+
+.btn-history:hover {
+  background: #7c3aed;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+.strategy-description {
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.strategy-owner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: rgba(51, 65, 85, 0.3);
+  border-radius: 0.5rem;
+}
+
+.owner-label {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.owner-link {
+  background: transparent;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.owner-link:hover {
+  color: #60a5fa;
+}
+
+.strategy-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.strategy-tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.strategy-tag-public {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
